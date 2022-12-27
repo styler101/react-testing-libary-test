@@ -35,20 +35,26 @@ export default function Login() {
       <div className="content">
         <h2> React Testing App</h2>
         <form onSubmit={handleSubmit}>
-          <label htmlFor="email"> Email</label>
+          <label htmlFor="email" aria-label="email">
+            {" "}
+            Email
+          </label>
           <input
             value={email}
-            type="text"
+            type="email"
             placeholder="Enter email"
-            id="email"
+            data-testid="#email"
             onChange={(e) => setEmail(e.target.value)}
           />
           <span> {showMessageFieldError(email)}</span>
-          <label> Password </label>
+          <label htmlFor="password" aria-label="password">
+            {" "}
+            Password{" "}
+          </label>
           <input
             type="password"
             placeholder="Password"
-            id="password"
+            data-testid="#password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
           />
