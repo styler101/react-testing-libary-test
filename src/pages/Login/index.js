@@ -1,13 +1,28 @@
 import React from "react";
+import { useFields } from "../../hooks/validatefields";
 import "./styles.css";
 
 export default function Login() {
   const [email, setEmail] = React.useState("");
   const [password, setPassword] = React.useState("");
+  const { handleValidateField, errors, resetFields, showMessageFieldError } =
+    useFields();
 
   function handleSubmit(e) {
     e.preventDefault();
-    console.log("form enviado");
+    if (!email) {
+      handleValidateField({
+        field: "email",
+        message: "Field email cannot be empty",
+      });
+    }
+    if (!password) {
+      handleValidateField({
+        field: "password",
+        message: "Field password cannot be empty",
+      });
+    }
+    resetFields();
   }
 
   function handleReset() {
@@ -28,6 +43,7 @@ export default function Login() {
             id="email"
             onChange={(e) => setEmail(e.target.value)}
           />
+          <span> {showMessageFieldError(email)}</span>
           <label> Password </label>
           <input
             type="password"
